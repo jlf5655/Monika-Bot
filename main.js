@@ -7,9 +7,8 @@ const config = require('./config.json');
 client.config = config; // make visible everywhere
 client.perm = require('./permissions.js'); // permissions.js is important
 
-const start = async() =>{
 	// first event loop
-	await fs.readdir('./events/', (err, files) =>{
+	fs.readdir('./events/', (err, files) =>{
 		if (err){
 			return console.error(err);
 		}
@@ -23,7 +22,7 @@ const start = async() =>{
 	// second command loop
 	client.commands = new Enmap;
 	client.aliases = new Enmap;
-	await fs.readdir('./commands/', (err, files) =>{
+	fs.readdir('./commands/', (err, files) =>{
 		if(err){
 			return console.error(err);
 		}
@@ -45,6 +44,3 @@ const start = async() =>{
 	}
 
 	client.login(config.token);
-}
-
-start();
