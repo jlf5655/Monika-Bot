@@ -6,6 +6,8 @@ const config = require('./config.json');
 
 client.config = config; // make visible everywhere
 client.perm = require('./permissions.js'); // permissions.js is important
+// helper functions and the like come from functions.js
+require('./functions.js')(client);
 
 	// first event loop
 	fs.readdir('./events/', (err, files) =>{
@@ -29,7 +31,7 @@ client.perm = require('./permissions.js'); // permissions.js is important
 		files.forEach(file =>{
 			if(!file.endsWith('.js')) return;
 			const cmd = require(`./commands/${file}`);
-			console.log(`Trying command ${cmd.help.name}`);
+			console.log(`Loading command ${cmd.help.name} to cache`);
 			client.commands.set(cmd.help.name, cmd);
 			cmd.conf.aliases.forEach(alias => {
 				client.aliases.set(alias, cmd.help.name);
@@ -38,7 +40,7 @@ client.perm = require('./permissions.js'); // permissions.js is important
 	});
 
 	client.levelCache = {};
-	for (let i=0;i< client.perm.permLevels.length;i++){ //hard-code for now, should be client.perm.permLevels.length
+	for (let i=0;i< client.perm.permLevels.length;i++){ 
 		const thisLevel = client.perm.permLevels[i];
 		client.levelCache[thisLevel.name] = thisLevel.level;
 	}
