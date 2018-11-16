@@ -43,7 +43,7 @@ exports.run = (client, message, args, level) =>{ //defaulting to 'User' level un
 exports.conf = {
 	enabled: true,
 	guldOnly: false,
-	aliases: ['h', 'halp', 'hlp'],
+	aliases: ['h', 'halp', 'hlp', 'plz'],
 	permLevel: 'User'
 };
 

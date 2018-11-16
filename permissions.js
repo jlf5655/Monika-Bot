@@ -6,9 +6,14 @@ const perm = {
 			check: () => true
 		},
 		{
-			level: 2,
+			level: 9,
 			name: 'Developer',
-			check: () => true
+			check: (message) => client.config.devs.includes(message.author.id)
+		},
+		{
+			level: 10,
+			name: 'Bot Owner',
+			check: (message) => message.author.id === message.client.config.owner
 		}
 	]	
 };

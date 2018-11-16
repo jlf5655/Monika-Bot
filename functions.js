@@ -9,7 +9,7 @@ module.exports = (client) => {
 			if(message.guild && currentLevel.guildOnly)
 				continue;
 			if(currentLevel.check(message)){
-				permlvl = currentLevel.level;
+				permlvl = currentLevel.level; // if permission level is equal to or higher than required
 				break;
 			}
 		}

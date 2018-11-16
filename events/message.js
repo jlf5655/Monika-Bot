@@ -1,4 +1,4 @@
-module.exports = (client, message)=>{
+module.exports = async (client, message)=>{
 	if(message.author.bot) return; // don't talk to bots ...yet
 	const prefixMention = new RegExp(`^<@!?${client.user.id}> `); // regExp to find bot's username
 	const prefix = message.content.match(prefixMention) ? message.content.match(prefixMention)[0] : '!';
@@ -20,7 +20,7 @@ module.exports = (client, message)=>{
 		
 	message.flags = [];
 	while(args[0] && args[0][0] === '-'){
-		message.flags.pus(args.shift().slice(1));
+		message.flags.push(args.shift().slice(1));
 	}
 	
 	cmd.run(client, message, args, level); // run the command
