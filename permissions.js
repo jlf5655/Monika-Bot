@@ -8,7 +8,7 @@ const perm = {
 		{
 			level: 9,
 			name: 'Developer',
-			check: (message) => client.config.devs.includes(message.author.id)
+			check: (message) => message.client.config.devs.includes(message.author.id)
 		},
 		{
 			level: 10,

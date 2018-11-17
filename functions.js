@@ -27,7 +27,7 @@ module.exports = (client) => {
 		console.log(`Uncaught Exception: ${msg}`);
 	});
 
-	process.on('unhandledRejection', (err) => {
+	/*process.on('unhandledRejection', (err) => {
 		console.log(`Unhandled Rejection: ${err}`);
-	});
+	});*/
 };

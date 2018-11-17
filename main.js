@@ -9,6 +9,9 @@ client.perm = require('./permissions.js'); // permissions.js is important
 // helper functions and the like come from functions.js
 require('./functions.js')(client);
 
+const start = async () =>{
+	// start by logging in like the last version
+	client.login(config.token);
 	// first event loop
 	fs.readdir('./events/', (err, files) =>{
 		if (err){
@@ -44,5 +47,6 @@ require('./functions.js')(client);
 		const thisLevel = client.perm.permLevels[i];
 		client.levelCache[thisLevel.name] = thisLevel.level;
 	}
+};
 
-	client.login(config.token);
+start();
