@@ -1,0 +1,16 @@
+- Update episode count (weekly)
+- Know what final episode is
+- create/delete channels 
+- create/delete categories and place channels
+- paste MAL link to channel
+- delete upon time request/extend life of channel on request
+- general discussions deleted upon time request
+- include exceptions to episode flow (insert movies/OVAs/usw)
+
+- needed parameters: Show name, Show time airs, Where it airs, Current episode, Final episode
+- ability to update/change air-time
+- delayed start-time (assign dates for airing shows)
+- works off Eastern Timezone (translates every timezone to Eastern Timezone)
+- when season changes, move shows from old season to new season, where applicable (split cours)
+- *Fan* Speech-to-text
+

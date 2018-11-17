@@ -8,6 +8,7 @@ exports.run = async (client, message, args) =>{
 	client.commands.delete(cmdName); // remove from enmap
 	const cmd = require(`./${cmdName}.js`);
 	client.commands.set(cmdName, cmd);
+	console.log(`Reloading command ${cmdName} to cache`);
 	message.channel.send(`The command ${cmdName} has been reloaded`);
 };
 
@@ -15,7 +16,7 @@ exports.conf = {
 	enabled: true,
 	guildOnly: false,
 	aliases: ['r'],
-	permLevel: 'User'
+	permLevel: 'Developer'
 };
 
 exports.help = {

@@ -2,7 +2,7 @@
 https://github.com/AnIdiotsGuide/guidebot/blob/master/commands/help.js
 A really nice implementation that I wish I could have thought of myself
 */
-exports.run = (client, message, args, level) =>{
+exports.run = (client, message, args, level) =>{ //defaulting to 'User' level until I get permission levels working correctly
 	// either show all commands or the specified command
 	if(!args[0]){
 		// command permission levels
@@ -43,7 +43,7 @@ exports.run = (client, message, args, level) =>{
 exports.conf = {
 	enabled: true,
 	guldOnly: false,
-	aliases: ['h', 'halp', 'hlp'],
+	aliases: ['h', 'halp', 'hlp', 'plz'],
 	permLevel: 'User'
 };
 

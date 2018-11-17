@@ -6,10 +6,14 @@ const config = require('./config.json');
 
 client.config = config; // make visible everywhere
 client.perm = require('./permissions.js'); // permissions.js is important
+// helper functions and the like come from functions.js
+require('./functions.js')(client);
 
-const start = async() =>{
+const start = async () =>{
+	// start by logging in like the last version
+	client.login(config.token);
 	// first event loop
-	await fs.readdir('./events/', (err, files) =>{
+	fs.readdir('./events/', (err, files) =>{
 		if (err){
 			return console.error(err);
 		}
@@ -23,14 +27,14 @@ const start = async() =>{
 	// second command loop
 	client.commands = new Enmap;
 	client.aliases = new Enmap;
-	await fs.readdir('./commands/', (err, files) =>{
+	fs.readdir('./commands/', (err, files) =>{
 		if(err){
 			return console.error(err);
 		}
 		files.forEach(file =>{
 			if(!file.endsWith('.js')) return;
 			const cmd = require(`./commands/${file}`);
-			console.log(`Trying command ${cmd.help.name}`);
+			console.log(`Loading command ${cmd.help.name} to cache`);
 			client.commands.set(cmd.help.name, cmd);
 			cmd.conf.aliases.forEach(alias => {
 				client.aliases.set(alias, cmd.help.name);
@@ -39,12 +43,10 @@ const start = async() =>{
 	});
 
 	client.levelCache = {};
-	for (let i=0;i< client.perm.permLevels.length;i++){ //hard-code for now, should be client.perm.permLevels.length
+	for (let i=0;i< client.perm.permLevels.length;i++){ 
 		const thisLevel = client.perm.permLevels[i];
 		client.levelCache[thisLevel.name] = thisLevel.level;
 	}
-
-	client.login(config.token);
-}
+};
 
 start();
