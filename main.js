@@ -6,6 +6,7 @@ const config = require('./config.json');
 
 client.config = config; // make visible everywhere
 client.perm = require('./permissions.js'); // permissions.js is important
+client.logger = require('./logger.js'); // defines how the logger formats text
 // helper functions and the like come from functions.js
 require('./functions.js')(client);
 
@@ -21,6 +22,7 @@ const start = async () =>{
 			if(!file.endsWith('.js')) return; // ignore non js files
 			const event = require(`./events/${file}`); // fancy way to load file
 			const eventName = file.split('.')[0]; // get the name, without file extension
+			client.logger.log(`Loading event ${eventName}`);
 			client.on(eventName, event.bind(null, client));
 		});
 	});	
@@ -34,7 +36,7 @@ const start = async () =>{
 		files.forEach(file =>{
 			if(!file.endsWith('.js')) return;
 			const cmd = require(`./commands/${file}`);
-			console.log(`Loading command ${cmd.help.name} to cache`);
+			client.logger.log(`Loading command ${cmd.help.name} to cache`);
 			client.commands.set(cmd.help.name, cmd);
 			cmd.conf.aliases.forEach(alias => {
 				client.aliases.set(alias, cmd.help.name);
